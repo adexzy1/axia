@@ -1,20 +1,17 @@
 import { useEffect } from 'react';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import Header from './Header';
-import googleLogin from '../../Redux/slice/user/asyncThunk/googleLogin';
-import { useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const GoogleCallback = () => {
   const dispatch = useAppDispatch();
-  const [searchParams] = useSearchParams();
+  const { query } = useRouter();
 
-  const value = searchParams.get('access_token');
-
-  useEffect(() => {
-    if (value) {
-      dispatch(googleLogin(value));
-    }
-  }, [value, dispatch]);
+  // useEffect(() => {
+  //   if (value) {
+  //     dispatch(googleLogin(value));
+  //   }
+  // }, [value, dispatch]);
 
   const style = {
     Wrapper:
