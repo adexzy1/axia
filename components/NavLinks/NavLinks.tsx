@@ -1,0 +1,22 @@
+import Link from 'next/link';
+import type { IconType } from 'react-icons';
+
+interface Props {
+  link: string;
+  text: string;
+  style: string;
+  Icon?: IconType;
+}
+
+const NavLinks = ({ link, text, style, Icon }: Props) => {
+  return (
+    <Link href={link}>
+      <a className={style}>
+        {Icon && <Icon className="text-2xl" />}
+        {text}
+      </a>
+    </Link>
+  );
+};
+
+export default NavLinks;
