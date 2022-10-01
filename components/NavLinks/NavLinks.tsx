@@ -6,13 +6,14 @@ interface Props {
   text: string;
   style: string;
   Icon?: IconType;
+  iconStyle?: string;
 }
 
-const NavLinks = ({ link, text, style, Icon }: Props) => {
+const NavLinks = ({ link, text, style, Icon, iconStyle }: Props) => {
   return (
     <Link href={link}>
       <a className={style}>
-        {Icon && <Icon className="text-2xl" />}
+        {Icon && <Icon className={iconStyle} />}
         {text}
       </a>
     </Link>

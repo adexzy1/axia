@@ -1,12 +1,11 @@
 import avatar from '../../public/img/avatarPlaceholder.jpeg';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useAppSelector from '../../hooks/useAppSelector';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import useIsDesktop from '../../hooks/useIsDesktop';
 import Image from 'next/image';
-import DesktopMenu from '../Menu/DesktopMenu';
+import DesktopUserMenu from '../Menu/DesktopUserMenu';
+import useClickOutside from '../../hooks/useClickOutside';
 
 interface Props {
   setToggle: Dispatch<SetStateAction<boolean>>;
@@ -16,9 +15,13 @@ const Avatar = ({ setToggle }: Props) => {
   const [showDesktopDropdown, setshowDesktopDropdown] = useState(false);
 
   // custom hooks
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.user);
   const isDesktop = useIsDesktop();
+
+  const { ref } = useClickOutside(() => {
+    if (showDesktopDropdown) {
+      setshowDesktopDropdown(false);
+    }
+  });
 
   const handleClick = () => {
     if (isDesktop) {
@@ -29,7 +32,7 @@ const Avatar = ({ setToggle }: Props) => {
   };
 
   return (
-    <section className="relative z-[10]" onClick={handleClick}>
+    <section className="relative z-[10]" onClick={handleClick} ref={ref}>
       {!isDesktop && (
         <section className=" w-7 h-7 rounded-full border-[1px] border-green overflow-hidden cursor-pointer">
           <Image src={avatar} alt="avatar" />
@@ -48,7 +51,7 @@ const Avatar = ({ setToggle }: Props) => {
         </section>
       )}
 
-      {showDesktopDropdown && <DesktopMenu />}
+      {showDesktopDropdown && <DesktopUserMenu />}
     </section>
   );
 };

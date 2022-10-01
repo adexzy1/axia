@@ -16,7 +16,10 @@ const MenuCategories = ({ category, data }: Props) => {
   };
   return (
     <section className={style.container}>
-      <h5 className={style.h5}>{category}</h5>
+      <h5 className={style.h5}>
+        {category}
+        <span>View All</span>
+      </h5>
       {data.map((item) => (
         <NavLinks
           key={item.name}

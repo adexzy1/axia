@@ -1,4 +1,5 @@
 import Image from 'next/future/image';
+import Head from 'next/head';
 import checkIcon from '../../public/img/success.png';
 import Header from './Header';
 
@@ -9,11 +10,15 @@ const RegistraionSuccess = () => {
     iconWrapper: 'w-16 m-auto',
     icon: 'w-full',
     title: 'font-bold text-2xl py-3',
-    message: 'text-gray text-sm',
+    message: 'text-gray-dark text-sm',
   };
 
   return (
     <>
+      <Head>
+        <title>Registration successful</title>
+      </Head>
+
       <Header />
 
       <section className={style.successWrapper}>

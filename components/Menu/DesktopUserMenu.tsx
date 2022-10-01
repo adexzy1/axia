@@ -3,22 +3,33 @@ import { AiOutlineUser, AiOutlineHeart } from 'react-icons/ai';
 import { GoPackage } from 'react-icons/go';
 import { IoMailOutline } from 'react-icons/io5';
 import useAppSelector from '../../hooks/useAppSelector';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import userLogout from '../../Redux/slice/asyncThunk/userLogout';
 
-const DesktopMenu = () => {
+const DesktopUserMenu = () => {
   const { user } = useAppSelector((state) => state.user);
-  const handleLogOut = async () => {};
+  const dispatch = useAppDispatch();
+
+  const handleLogOut = async () => {
+    dispatch(userLogout());
+  };
 
   const style = {
     link: 'flex items-center gap-3 border-none block py-2 px-5 hover:bg-gray hover:text-black transition hover:font-semibold',
     loginBtn:
       'px-2 bg-blue text-white w-[80%] block mx-auto py-2 rounded uppercase shadow my-4 hover:bg-blue-dark text-center',
+    linkIcon: 'text-2xl',
   };
 
-  const loggedOutMenu = [
-    { name: 'My Account', link: '/', icon: AiOutlineUser },
-    { name: 'Orders', link: '/', icon: GoPackage },
-    { name: 'Saved Items', link: '/', icon: AiOutlineHeart },
-    { name: 'Inbox', link: '/', icon: IoMailOutline },
+  const menuItems = [
+    { name: 'My Account', link: '/dashboard/account', icon: AiOutlineUser },
+    { name: 'Orders', link: '/dashboard/orders', icon: GoPackage },
+    {
+      name: 'Saved Items',
+      link: '/dashboard/saved-items',
+      icon: AiOutlineHeart,
+    },
+    { name: 'Inbox', link: '/dashboard/inbox', icon: IoMailOutline },
   ];
 
   return (
@@ -28,13 +39,14 @@ const DesktopMenu = () => {
       )}
 
       <div className={user ? 'border-b' : 'border-t'}>
-        {loggedOutMenu.map((item, i) => (
+        {menuItems.map((item, i) => (
           <NavLinks
             key={i}
             link={item.link}
             text={item.name}
             style={style.link}
             Icon={item.icon}
+            iconStyle={style.linkIcon}
           />
         ))}
       </div>
@@ -51,4 +63,4 @@ const DesktopMenu = () => {
   );
 };
 
-export default DesktopMenu;
+export default DesktopUserMenu;

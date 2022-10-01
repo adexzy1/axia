@@ -1,9 +1,10 @@
 import useAppSelector from '../../hooks/useAppSelector';
-import useAppDispatch from '../../hooks/useAppDispatch';
+// import useAppDispatch from '../../hooks/useAppDispatch';
 import { IoCloseSharp } from 'react-icons/io5';
 import Logo from '../logo/Logo';
 import MenuCategories from '../MenuCategories/MenuCategories';
-import Link from 'next/link';
+import { accountMenu, categories } from '../../data/links';
+import NavLinks from '../NavLinks/NavLinks';
 
 interface Props {
   toggle: boolean;
@@ -11,30 +12,22 @@ interface Props {
 }
 
 const Menu = ({ toggle, setToogle }: Props) => {
-  const { user } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  // const { user } = useAppSelector((state) => state.user);
+  // const dispatch = useAppDispatch();
+  // // console.log(user);
+
+  const user = '';
 
   const handleLogout = async () => {
     setToogle((prev) => !prev);
   };
 
-  const accountMenu = [
-    { name: 'Profile', link: '/' },
-    { name: 'Settings', link: '/' },
-    { name: 'Orders', link: '/' },
-    { name: 'Sell on Axia', link: '/' },
-  ];
-
-  const categories = [
-    { name: 'Tubers', link: '/' },
-    { name: 'Vegetables', link: '/' },
-    { name: 'Fruits', link: '/' },
-  ];
-
-  const authLinks = [
-    { name: 'Login', link: '/login' },
-    { name: 'Create Account', link: '/signup' },
-  ];
+  const style = {
+    login:
+      'text-white py-3 px-2 border w-1/2 transition-all duration-150 rounded bg-blue hover:bg-blue-dark',
+    signup:
+      'py-3 px-2 border w-1/2 transition-all duration-150 rounded border border-blue text-black hover:text-blue',
+  };
 
   return (
     <section
@@ -54,23 +47,14 @@ const Menu = ({ toggle, setToogle }: Props) => {
         <section>
           {!user && (
             <section className="flex justify-between gap-5 text-sm text-center border-t border-gray-light py-5 px-3">
-              {authLinks.map((item) => (
-                <Link key={item.name} href={item.link}>
-                  <a
-                    className={`text-white py-3 px-2 border w-1/2 transition-all duration-150 rounded ${
-                      item.name === 'Create Account'
-                        ? 'border border-blue text-black hover:text-blue'
-                        : ' bg-blue hover:bg-blue-dark '
-                    }`}
-                  >
-                    {item.name}
-                  </a>
-                </Link>
-              ))}
+              <NavLinks text="Login" style={style.login} link="/login" />
+              <NavLinks text="Create Account" style={style.signup} link="" />
             </section>
           )}
 
-          {!user && <MenuCategories category="My Account" data={accountMenu} />}
+          {!user && (
+            <MenuCategories category="My Axia Account" data={accountMenu} />
+          )}
 
           <MenuCategories category="Categories" data={categories} />
         </section>

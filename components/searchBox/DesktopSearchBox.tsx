@@ -4,17 +4,15 @@ import { useRouter } from 'next/router';
 
 const DesktopSearchBox = () => {
   const [showResetBtn, setShowResetBtn] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState<string | undefined | string[]>(
-    ''
-  );
+  const [inputValue, setInputValue] = useState<string>('');
 
   const { query } = useRouter();
 
   console.log();
 
   useEffect(() => {
-    if (query) {
-      setInputValue('');
+    if (query.query) {
+      setInputValue(query.query as string);
     }
   }, [query]);
 
@@ -28,9 +26,9 @@ const DesktopSearchBox = () => {
   }, [inputValue]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (inputValue !== '') {
-      window.location.href = `/catalog?query=${inputValue}`;
+    if (inputValue === '') {
+      // window.location.href = `/catalog?query=${inputValue}`;
+      e.preventDefault();
     }
   };
 
@@ -42,6 +40,8 @@ const DesktopSearchBox = () => {
     <form
       onSubmit={handleSubmit}
       className="hidden lg:flex gap-5 text-gray-400"
+      action="/catalog"
+      method="GET"
     >
       <div className="border border-gray-400 flex-1 items-center flex gap-2 px-2 h-10 rounded">
         <IoSearch className="text-2xl" />
@@ -49,7 +49,7 @@ const DesktopSearchBox = () => {
           onChange={(e) => setInputValue(e.target.value)}
           autoComplete={'off'}
           value={inputValue}
-          name="search"
+          name="query"
           type="text"
           className="w-full outline-none text-black"
           placeholder="Search farm produce"

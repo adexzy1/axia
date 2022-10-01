@@ -7,7 +7,6 @@ import { IoLogoTwitter } from 'react-icons/io5';
 import { IoLogoYoutube } from 'react-icons/io5';
 import Image from 'next/future/image';
 import Link from 'next/link';
-import NavLinks from '../NavLinks/NavLinks';
 import FooterSection from './FooterSection';
 
 const Footer = () => {
@@ -15,10 +14,9 @@ const Footer = () => {
   const date = new Date().getFullYear();
 
   const style = {
-    container:
-      'bg-black text-gray-dark px-5 xl:px-24 2xl:w-[1440px] 2xl:m-auto mt-auto',
+    container: 'bg-black text-gray-dark   mt-auto w-full',
     wrapper:
-      'top-col grid gap-y-10 xl:grid-cols-[25%,12%,12%,12%,20%] xl:gap-x-[5%] py-16 border-b',
+      'top-col grid gap-y-10 xl:grid-cols-[25%,12%,12%,12%,20%] xl:gap-x-[5%] py-16  px-5  border-b 2xl:w-[1440px] 2xl:m-auto xl:mx-24 ',
     firstCol: 'flex flex-col justify-center',
     h5: 'font-bold pb-3 text-white',
     subFooter: 'pt-5 pb-10 text-center',

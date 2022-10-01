@@ -1,8 +1,9 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
+import React, { useEffect } from 'react';
 import store from '../Redux/store';
-import React from 'react';
+import isUserLoggedIn from '../Redux/slice/asyncThunk/IsUserLoggedIn';
 
 type ComponentWithPageProps = AppProps & {
   Component: AppProps['Component'] & {
@@ -11,6 +12,10 @@ type ComponentWithPageProps = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: ComponentWithPageProps) {
+  useEffect(() => {
+    store.dispatch(isUserLoggedIn());
+  }, []);
+
   return (
     <Provider store={store}>
       {Component.PageLayout ? (

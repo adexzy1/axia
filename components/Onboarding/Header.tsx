@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <section className={style.header}>
-      <Logo width={isDesktop ? 140 : 110} />
+      <Logo width={isDesktop ? 120 : 110} />
       <p className={style.contactUs}>
         Contact us: <span className={style.mail}>admin@onepurse.com</span>
       </p>

@@ -16,6 +16,7 @@ const Logo = ({ margin, width }: Props) => {
         alt="logo"
         width={width}
         className={`${margin} cursor-pointer`}
+        priority={true}
       />
     </section>
   );
