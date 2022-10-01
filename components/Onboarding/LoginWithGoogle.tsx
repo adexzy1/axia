@@ -7,7 +7,7 @@ interface Props {
 
 const LoginWithGoogle = ({ signup }: Props) => {
   const handleGoogleLogin = async () => {
-    const url = 'http://localhost:1337/api/connect/google';
+    const url = process.env.NEXT_PUBLIC_BACKEND_API + '/api/connect/google';
     window.location.replace(url);
   };
 
