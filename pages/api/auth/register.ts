@@ -16,7 +16,7 @@ const register = async (req: NextApiRequest, res: NextApiResponse) => {
       if (!error.response?.data) {
         return res.status(500).json({ error: 'Internal server error' });
       } else {
-        const messages = error.response?.data;
+        const messages = error.response.data.error.message;
         return res.status(403).json({ error: messages });
       }
     }

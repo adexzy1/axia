@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useAppDispatch from '../hooks/useAppDispatch';
 import Header from '../components/Onboarding/Header';
-import googleLogin from '../Redux/slice/asyncThunk/googleLogin';
+import googleLogin from '../Redux/user/asyncThunk/googleLogin';
 import { useRouter } from 'next/router';
 
 const GoogleCallback = () => {

@@ -4,7 +4,7 @@ import { GoPackage } from 'react-icons/go';
 import { IoMailOutline } from 'react-icons/io5';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
-import userLogout from '../../Redux/slice/asyncThunk/userLogout';
+import userLogout from '../../Redux/user/asyncThunk/userLogout';
 
 const DesktopUserMenu = () => {
   const { user } = useAppSelector((state) => state.user);

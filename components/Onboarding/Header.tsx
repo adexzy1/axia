@@ -14,7 +14,7 @@ const Header = () => {
     <section className={style.header}>
       <Logo width={isDesktop ? 120 : 110} />
       <p className={style.contactUs}>
-        Contact us: <span className={style.mail}>admin@onepurse.com</span>
+        Contact us: <span className={style.mail}>support@axia.com</span>
       </p>
     </section>
   );

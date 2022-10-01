@@ -4,7 +4,7 @@ import type { NextRequest, NextFetchEvent } from 'next/server';
 export async function middleware(request: NextRequest, event: NextFetchEvent) {
   const token = request.cookies.get('token');
 
-  if (request.nextUrl.pathname.startsWith('/dashboard') && !token) {
+  if (request.nextUrl.pathname.startsWith('/dashboard') && token) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
@@ -17,6 +17,14 @@ export async function middleware(request: NextRequest, event: NextFetchEvent) {
   }
 
   if (request.nextUrl.pathname.startsWith('/google-callback') && token) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
+  if (
+    (request.nextUrl.pathname.startsWith('/reset-password') &&
+      !request.nextUrl.searchParams.get('code')) ||
+    token
+  ) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 }

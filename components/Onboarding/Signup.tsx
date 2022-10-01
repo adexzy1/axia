@@ -13,8 +13,8 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 import Logo from '../logo/Logo';
 import Link from 'next/link';
 import Image from 'next/future/image';
-import { removeErrorMessage } from '../../Redux/slice/userSlice';
-import userSignup from '../../Redux/slice/asyncThunk/userSignup';
+import { removeErrorMessage } from '../../Redux/user/userSlice';
+import userSignup from '../../Redux/user/asyncThunk/userSignup';
 import Head from 'next/head';
 
 const Signup = () => {
@@ -30,8 +30,6 @@ const Signup = () => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.user);
   const { handleSubmit, errors, register } = useFormValidation(signupSchema);
-
-  console.log(loading, error);
 
   // password validation
   const handleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -84,7 +82,7 @@ const Signup = () => {
         <form onSubmit={handleSubmit(handleSignup)} className="mx-5">
           {error && (
             <section className="mt-5 p-3 text-center rounded text-red-400 bg-red-100">
-              {/* {error} */}
+              {error}
             </section>
           )}
           <Input

@@ -10,7 +10,7 @@ const IndexLayout = ({ children }: Props) => {
   return (
     <div className="flex flex-col gap-y-20-[30rem]">
       <Navbar />
-      <section className="mx-6 bg-red-300">{children}</section>
+      <section className="mx-6">{children}</section>
       <Footer />
     </div>
   );
